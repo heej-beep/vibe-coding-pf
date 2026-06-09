@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+      padding: 28px 42px;
+    }
+
+    .header {
+      position: fixed;
+      top: 28px;
+      left: 42px;
+      right: 42px;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      gap: 45px;
+      margin-right: 360px;
+    }
+
+    .nav a,
+    .bottom a,
+    .cta {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .title {
+      position: fixed;
+      top: 135px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      font-size: 145px;
+      font-weight: 900;
+      letter-spacing: -6px;
+      line-height: 0.9;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .scroll-wrap {
+      position: fixed;
+      top: 220px;
+      left: 0;
+      width: 100vw;
+      height: 560px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      z-index: 20;
+      cursor: grab;
+      scrollbar-width: none;
+    }
+
+    .scroll-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .work-list {
+      display: flex;
+      gap: 210px;
+      width: max-content;
+      padding-left: 110px;
+      padding-right: 260px;
+    }
+
+    .card {
+      flex: 0 0 430px;
+    }
+
+    .card img {
+      width: 430px;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      background: #333;
+    }
+
+    .card p {
+      margin-top: 12px;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .card:nth-child(1) {
+      margin-top: 0;
+    }
+
+    .card:nth-child(2) {
+      margin-top: 190px;
+    }
+
+    .card:nth-child(3) {
+      margin-top: 65px;
+    }
+
+    .card:nth-child(4) {
+      margin-top: 190px;
+    }
+
+    .card:nth-child(5) {
+      margin-top: 65px;
+    }
+
+    .bottom {
+      position: fixed;
+      left: 42px;
+      bottom: 34px;
+      z-index: 60;
+      display: flex;
+      gap: 34px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .cta {
+      position: fixed;
+      right: 42px;
+      bottom: 34px;
+      z-index: 60;
+      font-size: 16px;
+      font-weight: 900;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="header">
+      <div class="logo">MY PORTFOLIO</div>
+
+      <nav class="nav">
+        <a href="#">WORK</a>
+        <a href="#">ABOUT</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </header>
+
+    <h1 class="title">PORTFOLIO</h1>
+
+    <section class="scroll-wrap" id="scrollWrap">
+      <div class="work-list">
+
+        <article class="card">
+            <img src="../assets/1번 화면.png" alt="작업물 1">
+          <p>crm 메세지 ai agent 기획</p>
+        </article>
+
+        <article class="card">
+            <img src="../assets/2번 화면.png" alt="작업물 2">
+          <p>중소 벤처 기업부 웹 디자인 개선</p>
+        </article>
+
+        <article class="card">
+            <img src="../assets/3번 화면.png" alt="작업물 3">
+          <p>Family Time</p>
+        </article>
+
+        <article class="card">
+            <img src="../assets/4번 화면.png" alt="작업물 4">
+          <p>Hold That Buy</p>
+        </article>
+
+        <article class="card">
+            <img src="../assets/5번 화면.png" alt="작업물 5">
+          <p>뷰티 커머스 웹 디자인</p>
+        </article>
+
+      </div>
+    </section>
+
+
+  </main>
+
+  <script>
+    const scrollWrap = document.getElementById("scrollWrap");
+
+    let isDragging = false;
+    let startX = 0;
+    let startScrollLeft = 0;
+
+    scrollWrap.addEventListener("mousedown", function(e) {
+      isDragging = true;
+      scrollWrap.style.cursor = "grabbing";
+      startX = e.pageX;
+      startScrollLeft = scrollWrap.scrollLeft;
+    });
+
+    scrollWrap.addEventListener("mousemove", function(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+
+      const moveX = e.pageX - startX;
+      scrollWrap.scrollLeft = startScrollLeft - moveX;
+    });
+
+    scrollWrap.addEventListener("mouseup", function() {
+      isDragging = false;
+      scrollWrap.style.cursor = "grab";
+    });
+
+    scrollWrap.addEventListener("mouseleave", function() {
+      isDragging = false;
+      scrollWrap.style.cursor = "grab";
+    });
+  </script>
+</body>
+</html>
